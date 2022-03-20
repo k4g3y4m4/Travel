@@ -6,6 +6,7 @@ import com.codingdojo.travel.repositores.TravelRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TravelService {
@@ -15,7 +16,7 @@ public class TravelService {
         this.travelRepository = travelRepository;
     }
 
-    //devuelve todos los VA
+    //devuelve todos los Viajes
     public List<Travel> AllTravels() {
         return travelRepository.findAll();
     }
@@ -24,4 +25,19 @@ public class TravelService {
         return travelRepository.save(travel);
     }
 
+    //buscar un viaje por id
+    public Travel findTravel(Long id){
+        Optional<Travel> optionalTravel = travelRepository.findById(id);
+        if(optionalTravel.isPresent()){
+            return optionalTravel.get();
+        }else{
+            return null;
+        }
+    }
+    //actualizar un viaje
+    public void updateTravel(Travel editTravel, Long id){
+        travelRepository.updateTravel(editTravel.getExpense(), editTravel.getVendor(), editTravel.getAmount(), id);
+    }
+
+    //eliminar un viaje por id
 }

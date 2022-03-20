@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -38,4 +40,24 @@ public class TravelController {
     travelService.createTravel(newTravel);
         return "redirect:/";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@ModelAttribute("editTravel") Travel editTravel, @PathVariable("id") Long id, Model model, HttpSession session) {
+        Travel travel = travelService.findTravel(id);
+        model.addAttribute("travel", travel);
+        session.setAttribute("id", id);
+        return "edit.jsp";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(@Valid @ModelAttribute("editTravel") Travel editTravel, BindingResult result, @PathVariable("id") Long id,HttpSession session) {
+        if (result.hasErrors()) {
+            return "edit.jsp";
+        }
+        travelService.updateTravel(editTravel,id);
+        session.removeAttribute("id");
+        return "redirect:/";
+    }
 }
+
+

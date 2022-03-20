@@ -2,6 +2,10 @@
     color: blue;
 }
 
+.green{
+    color: green;
+}
+
 .container-800{
     width: 800px;
     min-width: 200px;

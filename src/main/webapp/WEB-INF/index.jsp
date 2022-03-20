@@ -25,6 +25,7 @@
                                     <th scope="col">Expense</th>
                                     <th scope="col">Vendor</th>
                                     <th scope="col">Amount</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,6 +34,9 @@
                                         <td>${travel.getExpense()}</td>
                                         <td>${travel.getVendor()}</td>
                                         <td>${travel.getAmount()}</td>
+                                        <td>
+                                            <a href="/edit/${travel.getId()}" class="btn btn-warning text-white">Edit</a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -41,7 +45,6 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <h3 class="blue">Add a expense:</h3>
-                                <%--@elvariable id="newTravel" type=""--%>
                                 <form:form action="/newTravel" method="POST" modelAttribute="newTravel">
                                     <div class="form-group row py-1">
                                         <p class="text-danger"><form:errors path="Expense"/></p>
