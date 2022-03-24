@@ -31,17 +31,19 @@
                                 <tbody>
                                 <c:forEach items="${travels}" var="travel">
                                     <tr>
-                                        <td>${travel.getExpense()}</td>
+                                        <td><a href="/expense/${travel.getId()}">${travel.getExpense()}</a></td>
                                         <td>${travel.getVendor()}</td>
                                         <td>${travel.getAmount()}</td>
                                         <td>
                                             <a href="/edit/${travel.getId()}" class="btn btn-warning text-white">Edit</a>
+                                            <a href="/delete/${travel.getId()}" class="btn btn-danger text-white">Delete</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </div>
+
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <h3 class="blue">Add a expense:</h3>

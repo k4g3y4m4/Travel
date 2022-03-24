@@ -58,6 +58,19 @@ public class TravelController {
         session.removeAttribute("id");
         return "redirect:/";
     }
+
+    @GetMapping("/expense/{id}")
+    public String expense(@PathVariable("id") Long id, Model model) {
+        Travel travel = travelService.findTravel(id);
+        model.addAttribute("travel", travel);
+        return "show.jsp";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        travelService.deleteTravel(id);
+        return "redirect:/";
+    }
 }
 
 

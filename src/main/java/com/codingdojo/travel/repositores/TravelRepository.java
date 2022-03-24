@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface TravelRepository extends CrudRepository<Travel, Long> {
         Optional<Travel> findById(Long id);
         List<Travel> findAll();
+        void deleteById(Long id);
+
 
 
         //Update a Travel

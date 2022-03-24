@@ -39,5 +39,9 @@ public class TravelService {
         travelRepository.updateTravel(editTravel.getExpense(), editTravel.getVendor(), editTravel.getAmount(), id);
     }
 
+
     //eliminar un viaje por id
+    public void deleteTravel(Long id){
+        travelRepository.deleteById(id);
+    }
 }
